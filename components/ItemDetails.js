@@ -47,7 +47,7 @@ export default function ItemDetails({ item }) {
             className="p-2 sm:text-lg text-sm bg-[#ef233c] text-white rounded-md hover:bg-[#ef233b89] duration-300"
           >
             Add To Cart
-          </button>
+          </button> 
        
       </div>
         </div>

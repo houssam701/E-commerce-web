@@ -9,14 +9,13 @@ export default function AddItemComponent({sections}) {
   const [selectedImages, setSelectedImages] = useState([]);
   const [state,formAction] = useActionState(addSectionAction);
   const[status,dispatch] =useActionState(AddItemAction,{});
-  const [submitting,setSubmitting] = useState(false);
-  const [isSubmit,setIsSubmit] = useState(false);
   useEffect(() => {
     if (state?.success) {
       toast.success("Section has been added successfully!");
     }
     if (status?.success) {
       toast.success("Item has been added successfully!");
+      setSelectedImages([]);
     }
 
   }, [state?.success, state?.errors, status?.success, status?.errors]);
@@ -33,47 +32,42 @@ export default function AddItemComponent({sections}) {
           Add Item
           
         </h1>
-        <div className="flex flex-col sm:flex-row gap-20 w-full">
-        <div className="flex flex-col max-w-[600px] mt-10 w-full bg-slate-300">
-  <form
-    action={formAction}
-    className="flex flex-col max-w-[600px] w-full gap-4 bg-slate-300 p-4"
-  >
-    <label className="sm:text-xl text-lg">Section Name:</label>
-    <div className="flex flex-col gap-2">
-      <input
-        type="text"
-        name="title"
-        placeholder="Section Name"
-        className="border-transparent rounded-sm focus:border-[#ef233c] focus:bg-white focus:ring-0 focus:outline-none"
-      />
-      <input
-        type="file"
-        name="image"
-        placeholder="Choose an image"
-        className="border-transparent rounded-sm bg-white focus:border-[#ef233c] focus:bg-white focus:ring-0 focus:outline-none"
-      />
-      {state?.errors && (
-        <span className="text-red-600 p-1 mt-1">{state.errors}</span>
-      )}
-    </div>
+        <div className="flex flex-col sm:flex-row justify-center gap-20 w-full">
 
-    {submitting ? (
-      <button
-        type="button"
-        className="bg-[#ef233c] text-white font-bold py-2 px-4 rounded-sm hover:bg-red-700 mt-4"
-      >
-        Adding...
-      </button>
-    ) : (
-      <button
-        type="submit"
-        className="bg-[#ef233c] text-white font-bold py-2 px-4 rounded-sm hover:bg-red-700 mt-4"
-      >
-        Add Section
-      </button>
-    )}
-  </form>
+        <div className="flex flex-col max-w-[600px] mt-10 w-full ">
+            <form
+              action={formAction}
+              className="flex flex-col max-w-[600px] w-full gap-4 bg-slate-300 p-4"
+            >
+              <label className="sm:text-xl text-lg">Section Name:</label>
+              <div className="flex flex-col gap-2">
+                <input
+                  type="text"
+                  name="title"
+                  placeholder="Section Name"
+                  className="border-transparent rounded-sm focus:border-[#ef233c] focus:bg-white focus:ring-0 focus:outline-none"
+                />
+                <input
+                  type="file"
+                  name="image"
+                  placeholder="Choose an image"
+                  className="border-transparent rounded-sm bg-white focus:border-[#ef233c] focus:bg-white focus:ring-0 focus:outline-none"
+                />
+                {state?.errors && (
+                  <span className="text-red-600 p-1 mt-1">{state.errors}</span>
+                )}
+              </div>
+
+         
+               
+                <button
+                  type="submit"
+                  className="bg-[#ef233c] text-white font-bold py-2 px-4 rounded-sm hover:bg-red-700 mt-4"
+                >
+                  Add Section
+                </button>
+              
+            </form>
 
   {/* Table for Sections */}
   <div className="overflow-x-auto mt-6">
@@ -203,20 +197,12 @@ export default function AddItemComponent({sections}) {
           {status?.errors?.images && <div className=" text-red-600 text-sm pl-1 mt-1">{status.errors.images}</div>}
 
           </div>
-          {status?.message && <span className=" text-white text-sm pl-1 mt-1">{status.message}</span>}
-          {isSubmit ? 
-            <button
-            type="button"
-            className="bg-[#ef233c] text-white font-bold py-2 px-4 rounded-sm hover:bg-red-700 mt-4"
-          >
-            Adding...
-          </button>:
           <button
             type="submit"
             className="bg-[#ef233c] text-white font-bold py-2 px-4 rounded-sm hover:bg-red-700 mt-4"
           >
             Add Item  
-          </button>}
+          </button>
           
         </form>
         </div>

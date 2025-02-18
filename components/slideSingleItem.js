@@ -44,14 +44,14 @@ export default function ImageSingleSlide({ image }) {
   };
 
   return (
-    <div className="max-w-600px sm:w-[45%] w-100% h-[500px]">
+    <div className="max-w-600px sm:w-[40%] w-100% h-[500px]">
       <Slider {...settings}>
         {image.map((item, index) => (
           <div className=" h-[500px]" key={index}>
             <Image
               src={item.image_path}
               alt={`Slide ${index + 1}`}
-              className="object-cover object-center w-full h-full"
+              className="object-contain  w-full h-full"
               width={500}
               height={600}
             />

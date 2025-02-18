@@ -3,8 +3,10 @@ import Link from "next/link";
 import { useState } from "react";
 import { FaBars, FaTimes } from "react-icons/fa";
 import { logout } from "@/actions/admin-auth-action";
+import { usePathname } from "next/navigation";
 export default function Sidebar({ children }) {
   const [isOpen, setIsOpen] = useState(false);
+  const path = usePathname();
 
   const toggleSidebar = () => {
     setIsOpen(!isOpen);
@@ -43,7 +45,7 @@ export default function Sidebar({ children }) {
             <li>
               <Link
                 href="/addItems"
-                className="px-6 py-3 hover:bg-gray-700 block"
+                className={path.startsWith('/addItems')?'px-6 py-3 bg-gray-700 block':'px-6 py-3 hover:bg-gray-700 block'}
                 onClick={closeSidebar}
               >
                 Add Items
@@ -52,7 +54,7 @@ export default function Sidebar({ children }) {
             <li>
               <Link
                 href="/viewItems"
-                className="px-6 py-3 hover:bg-gray-700 block"
+                className={path.startsWith('/viewItems')?'px-6 py-3 bg-gray-700 block':'px-6 py-3 hover:bg-gray-700 block'}
                 onClick={closeSidebar}
               >
                 View Items
@@ -61,7 +63,7 @@ export default function Sidebar({ children }) {
             <li>
               <Link
                 href="/viewOrders"
-                className="px-6 py-3 hover:bg-gray-700 block"
+                className={path.startsWith('/viewOrders')?'px-6 py-3 bg-gray-700 block':'px-6 py-3 hover:bg-gray-700 block'}
                 onClick={closeSidebar}
               >
                 Orders
@@ -70,7 +72,7 @@ export default function Sidebar({ children }) {
             <li>
               <Link
                 href="/viewMessages"
-                className="px-6 py-3 hover:bg-gray-700 block"
+                className={path.startsWith('/viewMessages')?'px-6 py-3 bg-gray-700 block':'px-6 py-3 hover:bg-gray-700 block'}
                 onClick={closeSidebar}
               >
                 Messages
@@ -85,7 +87,6 @@ export default function Sidebar({ children }) {
                 Logout
               </button>
               </form>
-             
             </li>
           </ul>
         </nav>

@@ -93,14 +93,14 @@ export default function EditItemsModal({ button, className, item, sections }) {
           ariaHideApp={false}
         >
           <motion.form
-  className="relative mx-auto w-full max-w-md bg-white rounded-lg shadow-lg p-6 max-h-[85vh] overflow-y-auto modal-scrollable-content"
-  variants={modalVariants}
-  initial="hidden"
-  animate={isAnimating ? "visible" : "hidden"}
-  exit="exit"
-  transition={{ duration: 0.2, ease: "easeInOut" }}
-  onSubmit={handleSubmit}
->
+            className="relative mx-auto w-full max-w-md bg-white rounded-lg shadow-lg p-6 max-h-[85vh] overflow-y-auto modal-scrollable-content"
+            variants={modalVariants}
+            initial="hidden"
+            animate={isAnimating ? "visible" : "hidden"}
+            exit="exit"
+            transition={{ duration: 0.2, ease: "easeInOut" }}
+            onSubmit={handleSubmit}
+          >
             <h2 className="text-xl font-semibold mb-4">Edit Item</h2>
             <div className="mb-4">
               <label className="block font-medium mb-1">Name</label>

@@ -7,7 +7,7 @@ import { searchItemAction } from "@/actions/userItems-action";
 import { useSearch } from "@/contexts/SearchContext";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
-
+import { usePathname } from "next/navigation";
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -15,7 +15,7 @@ export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const { setSearchResults } = useSearch();
   const router = useRouter();
-
+  const path = usePathname();
   const { cart } = useCart();
   useEffect(() => {
     const handleScroll = () => {
@@ -57,7 +57,7 @@ export default function Navbar() {
 
           {/* Menu Items */}
           <div className="hidden md:flex space-x-6 items-center">
-            <Link href="/" className="hover:text-[#ef233c]">
+            <Link href="/" className={path===('/') ? 'text-[#ef233c]':'hover:text-[#ef233c]'}>
               Home
             </Link>
            
@@ -65,7 +65,7 @@ export default function Navbar() {
             <div className="relative">
             <button
               onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-              className="hover:text-[#ef233c] flex items-center"
+              className={path.startsWith('/items') ? 'text-[#ef233c] flex items-center':'hover:text-[#ef233c] flex items-center'}
             >
               Sections
               <motion.svg
@@ -76,7 +76,6 @@ export default function Navbar() {
                 viewBox="0 0 24 24"
                 xmlns="http://www.w3.org/2000/svg"
                 animate={{ rotate: isDropdownOpen ? 180 : 0 }}
-                transition={{ duration: 0.3, ease: "easeInOut" }}
               >
                 <path
                   strokeLinecap="round"
@@ -101,10 +100,10 @@ export default function Navbar() {
                 </div>
               )}
             </div>
-            <Link href="/cart" className="hover:text-[#ef233c]">
+            <Link href="/cart" className={path.startsWith('/cart') ? 'text-[#ef233c]':'hover:text-[#ef233c]'}>
               Cart
             </Link>
-            <Link href="/contact" className="hover:text-[#ef233c]">
+            <Link href="/contact" className={path.startsWith('/contact') ? 'text-[#ef233c]':'hover:text-[#ef233c]'}>
               Contact
             </Link>
             {/* Search Feature */}
@@ -151,7 +150,7 @@ export default function Navbar() {
                   d={
                     isMenuOpen
                       ? "M6 18L18 6M6 6l12 12"
-                      : "M4 6h16M4 12h16M4 18h16"
+                      : "M4 6h16M4 12h16M4 18h16  "
                   }
                 />
               </svg>
