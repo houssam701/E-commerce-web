@@ -3,7 +3,7 @@ import { ToastContainer } from "react-toastify";
 
 export default function AdminLayout({children}){
     return (<>
-    <ToastContainer 
+        <ToastContainer 
           position="top-right"
           autoClose={2000}
           hideProgressBar

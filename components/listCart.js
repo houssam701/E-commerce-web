@@ -9,7 +9,7 @@ export default function ListCart({section}){
     </div>
     <div className="text-white absolute top-[50%] left-[10%]">
         <h3 className="text-3xl font-bold mb-2">{section.title}</h3>
-        <Link href={`/${section.title}`}><button className=" text-lg  p-4 rounded-[5px] bg-transparent border-white border-[1px] hover:bg-[#ef233c] duration-300">Shop Now</button></Link>
+        <Link href={`/section/${section.title}`}><button className=" text-lg  p-4 rounded-[5px] bg-transparent border-white border-[1px] hover:bg-[#ef233c] duration-300">Shop Now</button></Link>
     </div>
 </div>
 }
